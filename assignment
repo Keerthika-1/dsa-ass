@@ -1,0 +1,313 @@
+import java.util.Arrays;
+import java.util.Locale;
+
+public class Anagram {
+    public static void main(String[] args) {
+        String s1="Fire";
+        String s2="Fried";
+        boolean bool=angram(s1,s2);
+        System.out.println(bool);
+    }
+
+    private static boolean angram(String s1, String s2) {
+        s1.toLowerCase();
+        s2.toLowerCase();
+        char[] c1=s1.toCharArray();
+        char[] c2=s2.toCharArray();
+        boolean status=true;
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        if(Arrays.equals(c1,c2)){
+            return true;
+        }
+
+
+        return false;
+    }
+    _____________________________________________________________________________________________
+    
+    public class BuddyString {
+    public static void main(String[] args) {
+        String s="aaaaaaabc";
+        String goal="aaaaaaacb";
+
+        boolean buddy=buddyString(s,goal);
+        System.out.println(buddy);
+    }
+
+    private static boolean buddyString(String s, String goal) {
+        String rev="";
+        for(int i=s.length()-1;i>=0;i--){
+            rev=rev+s.charAt(i);
+        }
+        s.replaceAll("bc",rev);
+        if(rev.equals(goal)){
+            return true;
+        }
+
+
+        return false;
+    }
+}
+__________________________________________________________________________________________________________
+public class MobileString {
+    static String printSequence(String arr[],
+                                String input)
+    {
+        String output = "";
+
+        // length of input string
+        int n = input.length();
+        for (int i = 0; i < n; i++)
+        {
+            // Checking for space
+            if (input.charAt(i) == ' ')
+                output = output + "0";
+
+            else
+            {
+                // Calculating index for each
+                // character
+                int position = input.charAt(i) - 'A';
+                output = output + arr[position];
+            }
+        }
+
+        // Output sequence
+        return output;
+    }
+
+    // Driver Function
+    public static void main(String[] args)
+    {
+        // storing the sequence in array
+        String str[] = {"2","22","222",
+                "3","33","333",
+                "4","44","444",
+                "5","55","555",
+                "6","66","666",
+                "7","77","777","7777",
+                "8","88","888",
+                "9","99","999","9999"
+        };
+
+        String input = "GEEKSFORGEEKS";
+        System.out.println(printSequence(str, input));
+    }
+}
+____________________________________________________________________________________
+package DSA_ASS7;
+
+
+import ArraysAndString.Node;
+
+public class OddEvenNodes {
+    public class Node{
+        int data;
+        ArraysAndString.Node next;
+        Node(int data) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+    static Node head;
+    public static void main(String[] args) {
+        addEle(17);
+        addEle(15);
+        addEle(8);
+        addEle(9);
+        addEle(2);
+        addEle(4);
+        addEle(6);
+        display1();
+    }
+    public static void display1() {
+        if (head == null) {
+            System.out.println("list is empty");
+        } else {
+           Node cur = head;
+            while (cur != null) {
+                System.out.println(cur.data + " ");
+                cur = cur.next;
+            }
+            System.out.println();
+        }
+    }
+
+    private void addEle(int data) {
+
+    }
+}
+_________________________________________________________________________________
+
+public class ProducteOfDigites {
+    public static void main(String[] args) {
+        String s="as13r52eau2";
+       int product= findProdute(s);
+       System.out.println(product);
+    }
+
+    private static int findProdute(String s) {
+        int p=1;
+        for(int i=0;i<s.length();i++){
+            Character c=s.charAt(i);
+
+            if(c.isDigit(c)){
+               int j=Integer.valueOf(c);
+
+                p=p*j;
+                //System.out.println(p);
+
+            }
+        }
+        //System.out.println(p);
+        return p;
+    }
+}
+________________________________________________________________________
+
+public class RemoveCyclie {
+    static Node head;
+    public static void main(String[] args) {
+
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        head.next.next.next = new Node(40);
+
+        Node last = head.next.next.next;
+
+        last.next = head.next;
+        findCycle(head);
+        display1();
+        findCycle(head);
+        findLength(head);
+        display1();
+        removecycle(head);
+    }
+
+    private static void removecycle(Node slop) {
+        Node slowp = head;
+        Node temp=slowp;
+       while(temp.next!=slowp.next){
+
+
+       }
+    }
+
+    private static int findLength(Node slowP) {
+        int count=1;
+        Node temp=slowP;
+        Node slowp = head;
+        while (temp.next!=slowp){
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+
+    private static boolean findcyclice(Node head) {
+        int count=0;
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        else if(head.next!=null){
+            count++;
+            System.out.println(count);
+        }
+        else {
+            Node slowp = head;
+            Node fastp = head;
+            while (fastp!=null && fastp.next.next!=null){
+                slowp=slowp.next;
+                fastp=fastp.next.next;
+
+                if(slowp==fastp){
+                    //slowp=head;
+                    return true;
+
+                }
+            }
+            System.out.println(count);
+        }
+
+        return false;
+    }
+
+    public static void display1() {
+        if (head == null) {
+            System.out.println("list is empty");
+        } else {
+            Node cur = head;
+            while (cur != null) {
+                System.out.println(cur.data + " ");
+                cur = cur.next;
+            }
+            System.out.println();
+        }
+    }
+    public static void findCycle(Node head){
+        if(head==null){
+            System.out.println("List is empty");
+
+        }
+        else if(head.next==null){
+            System.out.println(head);
+        }
+        else{
+            Node slowP=head;
+            Node fastp=head;
+            while(fastp !=null && fastp.next.next!=null){
+                slowP=slowP.next;
+               fastp= fastp.next.next;
+               if(slowP==fastp){
+                   System.out.println("found");
+                   break;
+               }
+            }
+        }
+    }
+}
+________________________________________________________________________________
+package DSA_ASS7;
+
+public class RemoveSpecailchar {
+    public static void main(String[] args) {
+        String s="afgt%y^u#";
+        String s1="";
+        for(int i=0;i<s.length();i++){
+            Character c=s.charAt(i);
+            if(c.isLetter(c)){
+                s1=s1+c;
+            }
+        }
+        System.out.println(s1);
+    }
+}
+______________________________________________________________________
+
+
+import java.util.Scanner;
+
+public class findAllSubStrings {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Eneter a string : ");
+        String s=sc.nextLine();
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<=s.length();j++){
+                System.out.println(s.substring(i,j));
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
